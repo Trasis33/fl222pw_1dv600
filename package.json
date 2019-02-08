@@ -1,0 +1,23 @@
+{
+  "name": "fl222pw_1dv600",
+  "version": "1.0.0",
+  "description": "Hangman",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trasis33/fl222pw_1dv600.git"
+  },
+  "author": "Fredrik Langå",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Trasis33/fl222pw_1dv600/issues"
+  },
+  "homepage": "https://github.com/Trasis33/fl222pw_1dv600#readme",
+  "dependencies": {
+    "standard": "^12.0.1"
+  }
+}
