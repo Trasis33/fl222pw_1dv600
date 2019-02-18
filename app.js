@@ -1,1 +1,3 @@
-console.log('Hello, world!')
+let hangman = require('./src/hangman.js')
+
+hangman.startGame()
