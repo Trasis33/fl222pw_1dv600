@@ -1,7 +1,14 @@
-
-module.exports.showLetter = (letter, isGuessed) => {
-  if (isGuessed) {
-    return letter
+class Letter {
+  constructor (value, isGuessed) {
+    this.value = value
+    this.isGuessed = isGuessed
   }
-  return '_'
+  showLetter () {
+    if (this.isGuessed) {
+      return this.value
+    }
+    return '_'
+  }
 }
+
+module.exports = Letter

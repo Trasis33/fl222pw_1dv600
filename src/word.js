@@ -1,7 +1,61 @@
+let Letter = require('./letter')
 
-module.exports.getWord = () => {
-  let words = ['awkward', 'bagpipe', 'banjo', 'dwarfes', 'fishhook', 'haphazard', 'hyphen', 'ivory', 'jiffy', 'jinx', 'jukebox', 'kiosk', 'kayak', 'numbskull', 'oxygen', 'pixel', 'polka', 'rhythmic', 'rogue', 'sphinx', 'swivel', 'unzip', 'yacht', 'zigzag', 'zombie']
-  let randomWord = Math.floor(Math.random() * (words.length - 1))
+class Word {
+  constructor (word) {
+    this.toBeGuessed = word
+    this.toBeGuessedLetters = this.toBeGuessed.split('')
+    this.letterObjArray = []
+    this.listOfGuesses = []
+    this.guessCheck = false
+    this.isCorrectGuess = false
+  }
 
-  return words[randomWord]
+  setUp () {
+    for (let letter of this.toBeGuessedLetters) {
+      let letterObj = new Letter(letter, false)
+      this.letterObjArray.push(letterObj)
+    }
+  }
+
+  combineLetters () {
+    let word = []
+    for (let letter of this.letterObjArray) {
+      word.push(letter.showLetter())
+    }
+    return word.join(' ')
+  }
+
+  updateLetters () {
+    for (let letter of this.letterObjArray) {
+      letter = letter.showLetter()
+    }
+  }
+
+  guessLetter (guess) {
+    this.isCorrectGuess = false
+    if (this.listOfGuesses.indexOf(guess) === -1) {
+      this.listOfGuesses.push(guess)
+      let checkAllGuesses = true
+      for (let letter of this.letterObjArray) {
+        if (guess === letter.value && letter.isGuessed === false) {
+          letter.isGuessed = true
+          this.isCorrectGuess = true
+        }
+        if (letter.isGuessed === false) {
+          checkAllGuesses = false
+        }
+      }
+      this.guessCheck = checkAllGuesses
+    }
+  }
+
+  updateWord (word) {
+    // console.log(this.listOfGuesses)
+    // console.log(this.toBeGuessedLetters)
+    this.guessLetter(word)
+    this.updateLetters()
+    return this.combineLetters()
+  }
 }
+
+module.exports = Word
