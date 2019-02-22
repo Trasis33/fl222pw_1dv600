@@ -15,7 +15,7 @@ let startGame = () => {
   let letters = currentWord.split('')
 
   letters.forEach(letter => {
-    console.log(letter)
+    // console.log(letter)
     let currentLetters = wordLetters.showLetter(letter, false)
     currentLettersArr.push(currentLetters)
   })
