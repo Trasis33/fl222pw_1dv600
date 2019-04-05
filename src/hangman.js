@@ -18,12 +18,12 @@ let questionObj = {
   }
 }
 
-// let exitObj = {
-//   type: 'list',
-//   name: 'exit',
-//   message: 'Sure you want to exit?',
-//   choices: ['Yes', 'No']
-// }
+let exitObj = {
+  type: 'list',
+  name: 'exit',
+  message: 'Sure you want to exit?',
+  choices: ['Yes', 'No']
+}
 
 let word
 let wordToGuess
@@ -45,9 +45,9 @@ let startGame = () => {
 
 let userInput = () => {
   inquirer.prompt(questionObj).then(answers => {
-    // if (answers.letter === 'Q') {
-    //   exitGame()
-    // }
+    if (answers.letter === 'Q') {
+      exitGame()
+    }
     compare(answers.letter)
   })
 }
@@ -85,13 +85,22 @@ let mainMenu = () => {
   })
 }
 
-// let exitGame = () => {
-//   inquirer.prompt(exitObj).then(answers => {
-//     if (answers.exit === 'Yes') {
-//       console.log('Thank you, come again')
-//       process.exit(0)
-//     }
-//   })
-// }
+let exitGame = () => {
+  process.exit(0)
+  // inquirer.prompt(exitObj).then(answers => {
+  //   if (answers.exit === 'Yes') {
+  //     console.log('Thank you, come again')
+  //     process.exit(0)
+  //   }
+  // })
+}
+
+let graphics = () => {
+  let graphics
+  return graphics
+}
 
 module.exports.startGame = startGame
+module.exports.userInput = userInput
+module.exports.exitGame = exitGame
+module.exports.graphics = graphics
