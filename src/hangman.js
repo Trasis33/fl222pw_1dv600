@@ -18,12 +18,12 @@ let questionObj = {
   }
 }
 
-// let exitObj = {
-//   type: 'list',
-//   name: 'exit',
-//   message: 'Sure you want to exit?',
-//   choices: ['Yes', 'No']
-// }
+let exitObj = {
+  type: 'list',
+  name: 'exit',
+  message: 'Sure you want to exit?',
+  choices: ['Yes', 'No']
+}
 
 let word
 let wordToGuess
@@ -45,14 +45,15 @@ let startGame = () => {
 
 let userInput = () => {
   inquirer.prompt(questionObj).then(answers => {
-    // if (answers.letter === 'Q') {
-    //   exitGame()
-    // }
     compare(answers.letter)
   })
 }
 
 let compare = (guess) => {
+  if (guess === 'Q') {
+    exitGame()
+    return
+  }
   current = wordToGuess.updateWord(guess)
 
   if (wordToGuess.isCorrectGuess === false && numberOfGuesses !== wordToGuess.listOfGuesses.length) {
@@ -60,8 +61,6 @@ let compare = (guess) => {
   }
   numberOfGuesses = wordToGuess.listOfGuesses.length
   console.log(current)
-  // console.log(remainingGuesses)
-  // printHangman(remainingGuesses)
   graphics(remainingGuesses)
   console.log(`remaining guesses: ${remainingGuesses}`)
 
@@ -88,15 +87,16 @@ let mainMenu = () => {
   })
 }
 
-// let exitGame = () => {
-//   process.exit(0)
-// inquirer.prompt(exitObj).then(answers => {
-//   if (answers.exit === 'Yes') {
-//     console.log('Thank you, come again')
-//     process.exit(0)
-//   }
-// })
-// }
+let exitGame = () => {
+  inquirer.prompt(exitObj).then(answers => {
+    if (answers.exit === 'Yes') {
+      console.log('Thank you, come again')
+      process.exit(0)
+    } else {
+      userInput()
+    }
+  })
+}
 
 let graphics = (guess) => {
   const hangmanLevel = [
@@ -196,5 +196,4 @@ let graphics = (guess) => {
 
 module.exports.startGame = startGame
 module.exports.userInput = userInput
-// module.exports.exitGame = exitGame
 module.exports.graphics = graphics
