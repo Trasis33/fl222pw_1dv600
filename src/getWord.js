@@ -8,6 +8,10 @@ module.exports.getWord = (difficulty) => {
 
     return randomWord(easy)
   }
+  /*
+    for testing
+    return 'test'
+  */
 }
 
 let randomWord = (words) => {
