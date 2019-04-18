@@ -9,6 +9,13 @@ let startObj = {
   choices: ['Yes', 'No']
 }
 
+let difficultyObj = {
+  type: 'list',
+  name: 'difficulty',
+  message: 'Choose a difficulty:',
+  choices: ['Easy', 'Hard']
+}
+
 let questionObj = {
   type: 'input',
   name: 'letter',
@@ -37,9 +44,6 @@ let startGame = () => {
   remainingGuesses = 9
   numberOfGuesses = 0
   current = ''
-  word = getWord.getWord()
-  wordToGuess = new Word(word)
-  wordToGuess.setUp()
   mainMenu()
 }
 
@@ -80,9 +84,25 @@ let compare = (guess) => {
 let mainMenu = () => {
   inquirer.prompt(startObj).then(answers => {
     if (answers.start === 'Yes') {
-      userInput()
+      chooseDifficulty()
     } else {
       console.log('Thank you, come again')
+    }
+  })
+}
+
+let chooseDifficulty = () => {
+  inquirer.prompt(difficultyObj).then(answers => {
+    if (answers.difficulty === 'Hard') {
+      word = getWord.getWord('Hard')
+      wordToGuess = new Word(word)
+      wordToGuess.setUp()
+      userInput()
+    } else {
+      word = getWord.getWord('Easy')
+      wordToGuess = new Word(word)
+      wordToGuess.setUp()
+      userInput()
     }
   })
 }
