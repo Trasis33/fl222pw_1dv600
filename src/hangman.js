@@ -60,6 +60,9 @@ let compare = (guess) => {
   }
   numberOfGuesses = wordToGuess.listOfGuesses.length
   console.log(current)
+  // console.log(remainingGuesses)
+  // printHangman(remainingGuesses)
+  graphics(remainingGuesses)
   console.log(`remaining guesses: ${remainingGuesses}`)
 
   if (wordToGuess.guessCheck === true) {
@@ -95,9 +98,100 @@ let mainMenu = () => {
 // })
 // }
 
-let graphics = () => {
-  let graphics
-  return graphics
+let graphics = (guess) => {
+  const hangmanLevel = [
+    `
+    |+---------+
+    |     |
+    |     O
+    |    \\|/
+    |    / \\
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |      O
+    |     \\|/
+    |       \\
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |      O
+    |     \\|/
+    |
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |      O
+    |      |/
+    |
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |      O
+    |      |
+    |
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |      O
+    |
+    |
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |      |
+    |
+    |
+    |
+    |
+    |_____________
+    `,
+    `
+    |+---------+
+    |
+    |
+    |
+    |
+    |
+    |_____________
+    `,
+    `
+    |
+    |
+    |
+    |
+    |
+    |
+    |_____________
+    `,
+    `
+  
+  
+  
+  
+  
+  
+    _____________
+      `
+  ]
+  console.log(hangmanLevel[guess])
 }
 
 module.exports.startGame = startGame
